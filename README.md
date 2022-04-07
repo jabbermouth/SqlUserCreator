@@ -13,6 +13,7 @@ docker run -it --rm -e SQL_SERVER=your.sql.server -e SQL_DATABASE=YourDatabaseNa
 ```
 
 `SQL_` prefixed variables are related to the target server and account with permission to create users
+
 `ACCOUNT_` prefixed variables are related to the new account to create
 
 ## Account Setup
