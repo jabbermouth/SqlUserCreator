@@ -9,12 +9,16 @@ This was developed to be used as part of a CI/CD process to generate a database 
 ## From Docker
 
 ```
-docker run -it --rm -e SQL_SERVER=your.sql.server -e SQL_DATABASE=YourDatabaseName -e SQL_USER=UserGenerator -e SQL_PASSWORD="ChangeToSecurePassword123!" -e ACCOUNT_USER="name-of-account-to-create" -e ACCOUNT_PASSWORD="SomethingRandom123!" jabbermouth/sqlusercreator
+docker run --rm -e SQL_SERVER=your.sql.server -e SQL_DATABASE=YourDatabaseName -e SQL_USER=UserGenerator -e SQL_PASSWORD="ChangeToSecurePassword123!" -e ACCOUNT_USER="name-of-account-to-create" -e ACCOUNT_PASSWORD="SomethingRandom123!" jabbermouth/sqlusercreator
 ```
 
 `SQL_` prefixed variables are related to the target server and account with permission to create users
 
 `ACCOUNT_` prefixed variables are related to the new account to create
+
+If running a high-availability setup, the variable of `SQL_NODES` can be passed as a comma-delimited list of each node name and it will create the login on each server.
+
+**Note:** To support a consistent SID across servers, the login SID is generated using an MD5 hash of the `ACCOUNT_USER` field.
 
 ## Account Setup
 
