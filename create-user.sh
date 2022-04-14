@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [$SQL_NODES -eq ""]; then
+if [ $SQL_NODES = "" ]; then
   SQL_NODES=$SQL_SERVER
 fi
 
@@ -22,6 +22,7 @@ while IFS=',' read -ra ADDR; do
 done <<< "$SQL_NODES"
 
 SQL_STATEMENTS="USE [$SQL_DATABASE]
+GO
 
 IF NOT EXISTS
     (SELECT name
