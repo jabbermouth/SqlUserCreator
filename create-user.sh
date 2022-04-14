@@ -21,6 +21,8 @@ while IFS=',' read -ra ADDR; do
   done
 done <<< "$SQL_NODES"
 
+sleep 1
+
 SQL_STATEMENTS="USE [$SQL_DATABASE]
 
 IF NOT EXISTS
