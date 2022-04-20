@@ -4,7 +4,7 @@ if [ $SQL_NODES = "" ]; then
   SQL_NODES=$SQL_SERVER
 fi
 
-SID=$(echo -n $ACCOUNT_PASSWORD | md5sum | cut -c1-32)
+SID=$(echo -n $ACCOUNT_USER | md5sum | cut -c1-32)
 SID=${SID^^}
 
 while IFS=',' read -ra ADDR; do
@@ -23,9 +23,7 @@ done <<< "$SQL_NODES"
 
 sleep 1
 
-SQL_STATEMENTS="USE [$SQL_DATABASE]
-
-IF NOT EXISTS
+SQL_STATEMENTS="IF NOT EXISTS
     (SELECT name
      FROM sys.database_principals
      WHERE name = '$ACCOUNT_USER')
